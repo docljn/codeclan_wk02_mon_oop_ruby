@@ -1,12 +1,13 @@
 class Team
 
   attr_reader :name, :players
-  attr_accessor :coach
+  attr_accessor :coach, :points
 
   def initialize(name, players, coach)
     @name = name
     @players = players
     @coach = coach
+    @points = 0
   end
 
   def add_player(new_player)
@@ -15,6 +16,10 @@ class Team
 
   def in_team(name)
     return @players.include?(name)
+  end
+
+  def game_result(win_or_lose)
+    @points += 3 if win_or_lose == "win"
   end
   # def name
   #   return @name

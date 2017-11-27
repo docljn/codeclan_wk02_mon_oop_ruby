@@ -38,4 +38,11 @@ class TestTeam < Minitest::Test
     assert_equal(true, team_one.in_team("Blogs"))
   end
 
+  def test_win_adds_points
+    team_one = Team.new("Hibs", ["Joe", "Blogs"], "Trevor")
+    team_one.game_result("win")
+    assert_equal(3, team_one.points )
+  end
+
+
 end
