@@ -26,6 +26,16 @@ class TestTeam < Minitest::Test
     assert_equal("Sean", team_one.coach)
   end
 
+  def test_add_player
+    team_one = Team.new("Hibs", ["Joe", "Blogs"], "Trevor")
+    team_one.add_player("Simon")
+    assert_equal(true, team_one.players.include?("Simon"))
 
+  end
+
+  def test_player_in_team
+    team_one = Team.new("Hibs", ["Joe", "Blogs"], "Trevor")
+    assert_equal(true, team_one.in_team("Blogs"))
+  end
 
 end
