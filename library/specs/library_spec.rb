@@ -77,24 +77,35 @@ class TestLibrary < Minitest::Test
   def test_add_book
     @library = Library.new(@books_array)
     new_book = {
-      title: "lord_of_the_dance",
+      title: "lord_of_the_fading_lands",
       rental_details: {
        student_name: "",
        date: ""
       }
     }
 
-    @library.add_book(new_book_title)
+    @library.add_book("lord_of_the_fading_lands")
 
-    assert_equal(true, @library.include?(new_book))
+    assert_equal(new_book, @library.book_info("lord_of_the_fading_lands"))
   end
 
+  # * Create a method that changes the rental details of a book by taking in the title of the book, the student renting it and the date it's due to be returned.
 
+  def test_change_rental_details
+    @library = Library.new(@books_array)
+    new_rental = @library.change_rental("lord_of_the_flies", "Jean", "15/01/2018")
 
+    expected = {
+      title: "lord_of_the_flies",
+      rental_details: {
+       student_name: "Jean",
+       date: "15/01/2018"
+      }
+    }
 
+    assert_equal(expected, new_rental)
 
-
-
+  end
 
 end
 
@@ -102,6 +113,6 @@ end
 
 
 
-  # * Create a method that changes the rental details of a book by taking in the title of the book, the student renting it and the date it's due to be returned.
+
 
 # end library_spec.rb
