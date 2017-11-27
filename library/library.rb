@@ -5,6 +5,12 @@
 # * Create a class for a Library that has an array of books. Each book should be a hash with a title, which is a string, and rental details, which is another hash with a student name and due date.
 #
 #
+
+# MY COMMENTS:
+# 1. My methods are ugly.
+# 2. I want three classes, with the library overseeing the relationship between books and borrowers.
+# 3. I'm still not sure that my tests are testing the right things!
+
 class Library
 
   attr_reader :books_array
@@ -61,7 +67,6 @@ class Library
   end
 
 end
-
 
 
 # end library.rb
