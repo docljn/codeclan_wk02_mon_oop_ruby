@@ -12,14 +12,19 @@ class Team
 
   def add_player(new_player)
     @players.push(new_player)
+    # CARE!
+    # this works, despite not having an accessor for :players
+    # you can't do "players="(), but you can change the contents by indirect methods.
+    # reader means you can access the variable, and hence you can make a change to it.
   end
 
-  def in_team(name)
+  def in_team?(name)
     return @players.include?(name)
   end
 
   def game_result(win_or_lose)
-    @points += 3 if win_or_lose == "win"
+    result = win_or_lose.downcase
+    @points += 3 if result == "win"
   end
   # def name
   #   return @name

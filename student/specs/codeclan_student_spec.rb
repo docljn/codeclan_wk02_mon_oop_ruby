@@ -6,6 +6,7 @@ class TestCodeclanStudent < Minitest::Test
 
   def setup
     @student = Student.new("Nancy", 12)
+    @student2 = Student.new("Jean", "18")
   end
 
 
@@ -30,7 +31,7 @@ class TestCodeclanStudent < Minitest::Test
   end
 
   def test_student_speaks
-    assert_equal("I can talk", @student.speaks)
+    assert_equal("I can talk", @student2.speaks)
   end
 
   def test_say_favourite_language

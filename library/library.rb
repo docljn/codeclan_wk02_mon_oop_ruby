@@ -16,7 +16,7 @@ class Library
   attr_reader :books_array
 
   def initialize(books_array)
-    @books_array = books_array
+    @books_array = books_array || []  # if no array given, won't fail because @books_array == nil
   end
 
   # * Create a method that lists all the books and their corresponding details.
@@ -29,18 +29,24 @@ class Library
     end
   end
 
+  # CARE: actually wanted to RETURN the books and info.
+
   # Create a method that takes in a book title and returns all of the information about that book.
 
   def book_info(title_string)
     for book in @books_array
       return book if book[:title] == title_string
     end
+    return nil
   end
 
   # Create a method that takes in a book title and returns only the rental details for that book.
 
   def book_rental(title_string)
     book = book_info(title_string)
+    if book == nil
+      return "Book not found."
+    end
     return book[:rental_details]
   end
 

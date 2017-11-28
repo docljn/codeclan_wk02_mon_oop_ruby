@@ -38,12 +38,9 @@ class TestLibrary < Minitest::Test
 
 
   # * Create a method that takes in a book title and returns all of the information about that book.
-  def test_book_info
-
+  def test_book_info__book_in_library
     @library = Library.new(@books_array)
-
     book_details = @library.book_info("lord_of_the_dance")
-
 
     expected = {
       title: "lord_of_the_dance",
@@ -57,20 +54,34 @@ class TestLibrary < Minitest::Test
 
   end
 
+  def test_book_info__book_not_in_library
+    @library = Library.new(@books_array)
+    book_details = @library.book_info("lord_of_the_world")
+    assert_nil(book_details)
+
+    # CARE: this is the only valid way to check for NIL.
+
+  end
+
 
   # * Create a method that takes in a book title and returns only the rental details for that book.
 
-  def test_book_rental_details
+  def test_book_rental_details__book_found
     @library = Library.new(@books_array)
     book_rental = @library.book_rental("lord_of_the_flies")
     expected = {
      student_name: "Joe",
      date: "11/12/17"
     }
-
     assert_equal(expected, book_rental)
   end
 
+  def test_book_rental_details__book_not_found
+    @library = Library.new(@books_array)
+    book_rental = @library.book_rental("lord_of_the_world")
+    expected = "Book not found."
+    assert_equal(expected, book_rental)
+  end
 
   # * Create a method that takes in a book title and adds it to our book list (Add a new hash for the book with the student name and date being left as empty strings)
 
@@ -87,6 +98,7 @@ class TestLibrary < Minitest::Test
     @library.add_book("lord_of_the_fading_lands")
 
     assert_equal(new_book, @library.book_info("lord_of_the_fading_lands"))
+    assert_equal(4, @books_array.count)
   end
 
   # * Create a method that changes the rental details of a book by taking in the title of the book, the student renting it and the date it's due to be returned.
